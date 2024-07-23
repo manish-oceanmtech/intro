@@ -11,16 +11,12 @@ void main() {
       tapBarrierToContinue: true,
       showPreviousButton: false,
       nextButtonStyle: ButtonStyle(
-        backgroundColor:
-            MaterialStateColor.resolveWith((states) => Colors.lightBlue),
-        shape: MaterialStateProperty.resolveWith(
-            (states) => const RoundedRectangleBorder()),
+        backgroundColor: MaterialStateColor.resolveWith((states) => Colors.lightBlue),
+        shape: MaterialStateProperty.resolveWith((states) => const RoundedRectangleBorder()),
       ),
       closeButtonStyle: ButtonStyle(
-        backgroundColor:
-            MaterialStateColor.resolveWith((states) => Colors.lime),
-        shape: MaterialStateProperty.resolveWith(
-            (states) => const RoundedRectangleBorder()),
+        backgroundColor: MaterialStateColor.resolveWith((states) => Colors.lime),
+        shape: MaterialStateProperty.resolveWith((states) => const RoundedRectangleBorder()),
       ),
     ),
     topLayerBuilder: (context, controller) {
@@ -29,16 +25,15 @@ void main() {
         child: TextButton(
           onPressed: controller.close,
           style: ButtonStyle(
-            foregroundColor:
-                MaterialStateColor.resolveWith((states) => Colors.white70),
-            backgroundColor:
-                MaterialStateColor.resolveWith((states) => Colors.white24),
+            foregroundColor: MaterialStateColor.resolveWith((states) => Colors.white70),
+            backgroundColor: MaterialStateColor.resolveWith((states) => Colors.white24),
           ),
           child: const Text("Exit"),
         ),
       );
     },
     child: MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Intro Demo',
       routes: {
         "home": (context) => const HomePage(),
@@ -76,7 +71,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(title: const Text("Intro Demo Home Page")),
       body: SingleChildScrollView(
         controller: _scrollController,
-        padding: const EdgeInsets.all(20),
+        // padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             ElevatedButton(
@@ -204,34 +199,28 @@ class _HomePageState extends State<HomePage> {
         closeButtonLabel: "×",
         nextButtonLabel: "→",
         previousButtonStyle: ButtonStyle(
-          backgroundColor:
-              MaterialStateColor.resolveWith((states) => Colors.blueGrey),
-          textStyle:
-              MaterialStateTextStyle.resolveWith((states) => const TextStyle(
-                    inherit: false,
-                    fontSize: 24.0,
-                    fontFamily: "STHupo",
-                  )),
+          backgroundColor: MaterialStateColor.resolveWith((states) => Colors.blueGrey),
+          textStyle: MaterialStateTextStyle.resolveWith((states) => const TextStyle(
+                inherit: false,
+                fontSize: 24.0,
+                fontFamily: "STHupo",
+              )),
         ),
         closeButtonStyle: ButtonStyle(
-          backgroundColor:
-              MaterialStateColor.resolveWith((states) => Colors.pink),
-          textStyle:
-              MaterialStateTextStyle.resolveWith((states) => const TextStyle(
-                    inherit: false,
-                    fontSize: 24.0,
-                    fontFamily: "STHupo",
-                  )),
+          backgroundColor: MaterialStateColor.resolveWith((states) => Colors.pink),
+          textStyle: MaterialStateTextStyle.resolveWith((states) => const TextStyle(
+                inherit: false,
+                fontSize: 24.0,
+                fontFamily: "STHupo",
+              )),
         ),
         nextButtonStyle: ButtonStyle(
-          backgroundColor:
-              MaterialStateColor.resolveWith((states) => Colors.green),
-          textStyle:
-              MaterialStateTextStyle.resolveWith((states) => const TextStyle(
-                    inherit: false,
-                    fontSize: 24.0,
-                    fontFamily: "STHupo",
-                  )),
+          backgroundColor: MaterialStateColor.resolveWith((states) => Colors.green),
+          textStyle: MaterialStateTextStyle.resolveWith((states) => const TextStyle(
+                inherit: false,
+                fontSize: 24.0,
+                fontFamily: "STHupo",
+              )),
         ),
       ),
       child: child,
@@ -275,17 +264,13 @@ class _HomePageState extends State<HomePage> {
       cardDecoration: const IntroCardDecoration(
         align: IntroCardAlign.outsideBottomLeft,
         margin: EdgeInsets.zero,
-        textStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            fontFamily: "Comic Sans MS",
-            shadows: [
-              Shadow(
-                color: Colors.black87,
-                offset: Offset(1, 1),
-                blurRadius: 3.0,
-              ),
-            ]),
+        textStyle: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "Comic Sans MS", shadows: [
+          Shadow(
+            color: Colors.black87,
+            offset: Offset(1, 1),
+            blurRadius: 3.0,
+          ),
+        ]),
       ),
       cardBuilder: (context, param, decoration) {
         return Container(
@@ -311,8 +296,7 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Icon(Icons.heart_broken,
-                                size: 40, color: Colors.redAccent),
+                            const Icon(Icons.heart_broken, size: 40, color: Colors.redAccent),
                             const SizedBox(width: 20),
                             Expanded(
                               child: Text(
@@ -328,8 +312,7 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Icon(Icons.sports_handball,
-                                size: 40, color: Colors.orangeAccent),
+                            const Icon(Icons.sports_handball, size: 40, color: Colors.orangeAccent),
                             const SizedBox(width: 20),
                             Expanded(
                               child: Builder(
@@ -354,8 +337,7 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Icon(Icons.draw,
-                                size: 40, color: Colors.greenAccent),
+                            const Icon(Icons.draw, size: 40, color: Colors.greenAccent),
                             const SizedBox(width: 20),
                             Expanded(
                               child: Text(
@@ -400,8 +382,7 @@ class _HomePageState extends State<HomePage> {
                     elevation: 0,
                     hoverElevation: 0,
                     highlightElevation: 0,
-                    child: const Icon(Icons.arrow_upward,
-                        color: Colors.white, size: 25),
+                    child: const Icon(Icons.arrow_upward, color: Colors.white, size: 25),
                   ),
                   const SizedBox(height: 20),
                   MaterialButton(
@@ -414,8 +395,7 @@ class _HomePageState extends State<HomePage> {
                     elevation: 0,
                     hoverElevation: 0,
                     highlightElevation: 0,
-                    child: const Icon(Icons.arrow_downward,
-                        color: Colors.white, size: 25),
+                    child: const Icon(Icons.arrow_downward, color: Colors.white, size: 25),
                   ),
                   Expanded(child: Container()),
                   Container(
@@ -423,8 +403,7 @@ class _HomePageState extends State<HomePage> {
                         border: Border.all(
                       color: Colors.white38,
                     )),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                    padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
                     child: Text(
                       "${param.step}/${param.controller.stepCount}",
                       style: const TextStyle(color: Colors.white38),

@@ -104,8 +104,7 @@ class IntroController {
     this.onWillClose,
   }) {
     assert(stepCount > 0, "The [stepCount] argument must be greater than 0.");
-    _keys = Map.fromEntries(List.generate(stepCount,
-        (i) => MapEntry(i + 1, GlobalObjectKey("$hashCode-${i + 1}"))));
+    _keys = Map.fromEntries(List.generate(stepCount, (i) => MapEntry(i + 1, GlobalObjectKey("$hashCode-${i + 1}"))));
   }
 
   bool get mounted => stepCount > 0 && _keys.length == stepCount;
@@ -161,8 +160,7 @@ class IntroController {
   bool _debugAssertNotDisposed() {
     assert(() {
       if (!mounted) {
-        throw IntroException(
-            "The instance of IntroController has been destroyed, "
+        throw IntroException("The instance of IntroController has been destroyed, "
             "you shouldn't call any method of it.");
       }
       return true;
@@ -173,8 +171,7 @@ class IntroController {
   bool _debugAssertOpened() {
     assert(() {
       if (!_isOpened) {
-        throw IntroException(
-            "Please call [start] method to launch the introduction process first.");
+        throw IntroException("Please call [start] method to launch the introduction process first.");
       }
       return true;
     }());
@@ -184,8 +181,7 @@ class IntroController {
   bool _debugAssertStepRange(int step) {
     assert(() {
       if (step <= 0 || step > stepCount) {
-        throw IntroException(
-            "The [step] value `$step` out of range [1..$stepCount].");
+        throw IntroException("The [step] value `$step` out of range [1..$stepCount].");
       }
       return true;
     }());
@@ -246,8 +242,7 @@ class IntroController {
 
     final params = _targets[_currentStep];
     if (params == null) {
-      throw IntroException(
-          "Can not build introduction overlay for step `$_currentStep`. "
+      throw IntroException("Can not build introduction overlay for step `$_currentStep`. "
           "It means a [IntroStepTarget] widget using this step has not been rendered. "
           "Please check whether the `IntroStepTarget(step: $_currentStep)` widget has been created "
           "and make sure it has in the widget tree.");
@@ -262,6 +257,7 @@ class IntroController {
       endOpacity: _closing ? 0.0 : 1.0,
       onAnimationFinished: _onOverlayAnimationFinished,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData.dark(),
         home: Material(
           type: MaterialType.transparency,
@@ -290,8 +286,7 @@ class IntroController {
 
     final widget = params._state.widget;
     final rect = params.highlightRect;
-    final decoration =
-        intro.highlightDecoration.mergeTo(widget.highlightDecoration);
+    final decoration = intro.highlightDecoration.mergeTo(widget.highlightDecoration);
     return AnimatedPositioned(
       duration: intro.animationDuration,
       left: rect.left,
@@ -326,8 +321,7 @@ class IntroController {
 
           final rect = params.highlightRect;
           final widget = params._state.widget;
-          final decoration =
-              intro.highlightDecoration.mergeTo(widget.highlightDecoration);
+          final decoration = intro.highlightDecoration.mergeTo(widget.highlightDecoration);
           return Stack(
             children: [
               AnimatedPositioned(
@@ -344,11 +338,8 @@ class IntroController {
                   ),
                   child: GestureDetector(
                     onTap: () {
-                      final decoration = _intro?.cardDecoration.mergeTo(
-                          _getCurrentStepParams()
-                              ?._state
-                              .widget
-                              .cardDecoration);
+                      final decoration =
+                          _intro?.cardDecoration.mergeTo(_getCurrentStepParams()?._state.widget.cardDecoration);
                       if (decoration?.tapBarrierToContinue == true) {
                         next();
                       }
@@ -399,12 +390,10 @@ class IntroController {
     final left = rect.left.isInfinite ? null : rect.left;
     final right = rect.right.isInfinite ? null : (screen.width - rect.right);
     final top = rect.top.isInfinite ? null : rect.top;
-    final bottom =
-        rect.bottom.isInfinite ? null : (screen.height - rect.bottom);
+    final bottom = rect.bottom.isInfinite ? null : (screen.height - rect.bottom);
 
-    final decoration = intro.cardDecoration
-        .mergeTo(widget.cardDecoration)
-        .mergeTo(IntroCardDecoration(align: params.actualCardAlign));
+    final decoration =
+        intro.cardDecoration.mergeTo(widget.cardDecoration).mergeTo(IntroCardDecoration(align: params.actualCardAlign));
     return Positioned(
       left: left,
       right: right,
@@ -433,15 +422,10 @@ class IntroController {
     });
   }
 
-  Future<void> _switchStep(int fromStep, int toStep,
-      [bool needRefresh = true]) async {
+  Future<void> _switchStep(int fromStep, int toStep, [bool needRefresh = true]) async {
     _switching = true;
     if (fromStep != 0) {
-      await _targets[fromStep]
-          ?._state
-          .widget
-          .onStepWillDeactivate
-          ?.call(toStep);
+      await _targets[fromStep]?._state.widget.onStepWillDeactivate?.call(toStep);
     }
     if (toStep != 0) {
       await _targets[toStep]?._state.widget.onStepWillActivate?.call(fromStep);
